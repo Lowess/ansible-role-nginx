@@ -19,3 +19,10 @@
     dest: /etc/nginx/fastcgi_params
     line: 'fastcgi_param HTTP_PROXY "";'
     insertafter: EOF
+
+- name: Frequently kickoff log rotation
+  cron:
+    state: present
+    name: Nginx log rotation
+    special_time: hourly
+    job: /usr/sbin/logrotate -f /etc/logrotate.d/nginx
